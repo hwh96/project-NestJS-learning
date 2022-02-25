@@ -1,0 +1,45 @@
+scalar DateTime
+
+type Trial {
+  id: Int!
+  count: Int!
+  displayName: String!
+  email: String!
+  mobile: String
+  team: String
+  message: String
+  createdAt: DateTime
+}
+
+input CreateTrialInput {
+  count: Int!
+  displayName: String!
+  email: String!
+  mobile: String
+  team: String
+  message: String
+  createdAt: DateTime
+}
+
+input OrderByParams {
+  field: String
+  direction: String
+}
+
+type Query {
+  trials(orderBy: OrderByParams): [Trial]!
+  trial(id: Int!): Trial
+  totalTrial: Int!
+}
+
+type Mutation {
+  createTrial(createTrialInput: CreateTrialInput!): Trial!
+}
+
+type Result {
+  total: Int!
+}
+
+type Subscription {
+  totalUpdated: Result
+}
